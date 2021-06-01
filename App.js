@@ -14,6 +14,7 @@ import SupportScreen from './screens/SupportScreen'
 import ScanScreen from './screens/ScanScreen'
 import LoginContextProvider from './contexts/LoginContext';
 import MyOffers from './screens/MyOffers'
+import ReferralScreen from './screens/ReferralScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -70,6 +71,7 @@ export default function App() {
             <Stack.Screen options={{ headerShown: false }} name="RequestSupport" component={RequestSupport} />
             <Stack.Screen options={{ headerShown: false }} name="Support" component={SupportScreen} />
             <Stack.Screen options={{ headerShown: false }} name="Scan" component={ScanScreen} />
+            <Stack.Screen options={{ headerShown: false }} name="Referral" component={ReferralScreen} />
             <Stack.Screen options={{ headerShown: false }} name="Offers" component={MyTabs}
             // options={{
             //   headerRight: () => (

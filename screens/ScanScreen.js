@@ -1,31 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, Input } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export default function ScanScreen({navigation}) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
+    const [username, setUsername] = useState('')
 
-    const performTransaction = (username) => {
-        fetch("http://192.168.10.13:5000/user/transaction", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                referral_code: 2796,
-                username: username
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.status) {
-                alert("Transaction Successful")
-                navigation.navigate("Offers")
-            }
-        })
-    }
 
     useEffect(() => {
         (async () => {
@@ -34,9 +15,13 @@ export default function ScanScreen({navigation}) {
         })();
     }, []);
 
+    useEffect(() => {
+        if (username !== '') navigation.navigate('Referral', {username: username})
+    })
+
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        performTransaction(data)
+        setUsername(data)
     };
 
     if (hasPermission === null) {

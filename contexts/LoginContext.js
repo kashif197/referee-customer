@@ -21,7 +21,7 @@ const LoginContextProvider = (props) => {
         setData('')
     }
 
-    const changeData = (token, id, firstName, lastName, username, email, contact, photoURL) =>
+    const changeData = (token, id, firstName, lastName, username, email, contact, photoURL, code) =>
         setData({
             token: token,
             id: id,
@@ -30,7 +30,8 @@ const LoginContextProvider = (props) => {
             firstName: firstName,
             lastName: lastName,
             contact: contact,
-            photoURL: photoURL
+            photoURL: photoURL,
+            code:code
         });
 
     function signInLocal(email, password) {
@@ -57,7 +58,7 @@ const LoginContextProvider = (props) => {
                     storeData('password', password)
                     console.log(data)
                     // Update Login Context Data
-                    changeData(data.token, data.id, data.first_name, data.last_name, data.username, data.email, data.contact, '')
+                    changeData(data.token, data.id, data.first_name, data.last_name, data.username, data.email, data.contact, '', data.referral)
 
                 }
             })
@@ -94,7 +95,7 @@ const LoginContextProvider = (props) => {
                                 let newResult = JSON.stringify(result)
                                 storeData('oauthResult', newResult)
                                 // Update Context
-                                changeData(data.token, data.data.id, data.data.title, data.data.first_name, data.data.last_name, data.data.username, data.data.email, data.data.contact, result.user.photoUrl)
+                                changeData(data.token, data.data.id, data.data.title, data.data.first_name, data.data.last_name, data.data.username, data.data.email, data.data.contact, result.user.photoUrl, data.data.referral)
                             }
 
                         })
@@ -126,7 +127,7 @@ const LoginContextProvider = (props) => {
                             }
                             else {
                                 console.log('running')
-                                changeData(data.token, data.data.id, data.data.title, data.data.username, data.data.email, data.data.designation, data.data.contact, result.user.photoUrl)
+                                changeData(data.token, data.data.id, data.data.title, data.data.username, data.data.email, data.data.designation, data.data.contact, result.user.photoUrl, data.data.referral)
                             }
 
                         })
@@ -185,7 +186,7 @@ const LoginContextProvider = (props) => {
                                 let fbDataString = JSON.stringify(fbData)
                                 storeData("loggedState", "fb")
                                 storeData("fbData", fbDataString)
-                                changeData(data.token, data.data.id, data.data.title, data.data.username, data.data.email, data.data.designation, data.data.contact, photoInfo)
+                                changeData(data.token, data.data.id, data.data.title, data.data.username, data.data.email, data.data.designation, data.data.contact, photoInfo, data.data.referral)
                             }
 
                         })
@@ -218,7 +219,7 @@ const LoginContextProvider = (props) => {
 
                     }
                     else {
-                        changeData(data.token, data.data.id, data.data.title, data.data.username, data.data.email, data.data.designation, data.data.contact, fbData.photoInfo)
+                        changeData(data.token, data.data.id, data.data.title, data.data.username, data.data.email, data.data.designation, data.data.contact, fbData.photoInfo, data.data.referral)
                     }
 
                 })

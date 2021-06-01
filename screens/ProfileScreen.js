@@ -24,14 +24,14 @@ function ProfileScreen({ route, navigation }) {
         <ScrollView>
             <View style={styles.mainContainer}>
                 <View style={styles.headerArea}>
-                    {/* <Avatar
+                    <Avatar
                         rounded
-                        source={{ uri: data.photoURL }}
+                        source={{ uri: data.photoURL === '' ? "https://lh3.googleusercontent.com/TwHrwftk8BaWEV4swcWDtdcg1halIcT2U3EWkXYkDyYPXmufMLtn1DJG569HIIsd4ty4=s630-fcrop64=1,2202423de15ce329" : data.photoURL }}
                         size="large"
-                    /> */}
+                    />
                     <View>
                         <Text style={styles.usernameText}>{data.username}</Text>
-                        <Text style={styles.subText}>Joined in May 2021</Text>
+                        <Text style={styles.subText}>Referral Code: {data.code}</Text>
                     </View>
                 </View>
                 <Text style={styles.menuHeader}>Profile Information</Text>
@@ -112,7 +112,7 @@ function ProfileScreen({ route, navigation }) {
                         color='#707070'
                     />
                 </ListItem>
-                <ListItem bottomDivider onPress={() => { }}>
+                {/* <ListItem bottomDivider onPress={() => { }}>
                     <ListItem.Content>
                         <ListItem.Title style={{ fontWeight: 'bold' }}>Payments</ListItem.Title>
                     </ListItem.Content>
@@ -121,7 +121,7 @@ function ProfileScreen({ route, navigation }) {
                         type='ionicon'
                         color='#707070'
                     />
-                </ListItem>
+                </ListItem> */}
                 <Button
                     title='LOG OUT'
                     buttonStyle={styles.buttonStyle}

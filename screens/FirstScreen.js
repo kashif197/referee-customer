@@ -51,7 +51,7 @@ function FirstScreen({ navigation }) {
     const [isLogged, setLogged] = React.useState(false)
 
 
-    const { data, signInLocal, signInWithGoogleAsync, logIn} = useContext(LoginContext)
+    const { data, signInLocal, signInWithGoogleAsync, logIn, resetData} = useContext(LoginContext)
 
     // First Scan Of Storage
     useEffect(() => {
@@ -75,6 +75,17 @@ function FirstScreen({ navigation }) {
         return (                        
             <View style={styles.startLoad}>
                 <ActivityIndicator size="large" color="#2EC4B6" />
+                {/* <Button
+                    title='LOG OUT'
+                    buttonStyle={styles.buttonStyle}
+                    titleStyle={{ fontSize: 18 }}
+                    onPress={() => {
+                        resetData()
+                        AsyncStorage.clear()
+                        // storeData('loggedState', 'no')
+                        navigation.navigate('Login')
+                    }}
+                /> */}
             </View>
         );
     }
@@ -83,6 +94,17 @@ function FirstScreen({ navigation }) {
         return (
             <View style={styles.startLoad}>
                 <ActivityIndicator size="large" color="#2EC4B6" />
+                {/* <Button
+                    title='LOG OUT'
+                    buttonStyle={styles.buttonStyle}
+                    titleStyle={{ fontSize: 18 }}
+                    onPress={() => {
+                        resetData()
+                        AsyncStorage.clear()
+                        // storeData('loggedState', 'no')
+                        navigation.navigate('Login')
+                    }}
+                /> */}
             </View>
         );
     }

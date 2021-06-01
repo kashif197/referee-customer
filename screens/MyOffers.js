@@ -8,7 +8,7 @@ function MyOffers({ navigation }) {
 
     const [offers, setOffers] = React.useState('')
     const { data } = useContext(LoginContext)
-
+    const [stat, setStat] = React.useState(false)
 
     function getAvailedOffers() {
         fetch('http://192.168.10.13:5000/offcust/getAvailedOffers/' + data.id, {
@@ -44,7 +44,7 @@ function MyOffers({ navigation }) {
             <ScrollView style={styles.mainContainer}>
                 {offers.map(item => ( 
 
-                    <Card key={item._id} containerStyle={{ elevation: 0, borderWidth: 0, marginTop: 40 }}>
+                    <Card key={item._id} containerStyle={{ elevation: 0, borderWidth: 0, marginTop: 40, display: stat ? "none" : null }}>
                         <Image style={{ width: 400, height: 150 }} source={require('../images/referee-web-bg.png')} />
                         <Text style={{ marginTop: 10, marginBottom: 10, fontSize: 20, fontWeight: 'bold', color: '#000' }}>
                             {item.offer_headline}
@@ -59,6 +59,7 @@ function MyOffers({ navigation }) {
                                 onPress={() => {
                                     if (item.targetTransaction == item.count) {
                                         alert("Show this to redeem.")
+                                        setStat(true)
                                     }
                                     else {
                                         alert("You do not meet the minimum criteria to avail this offer.")
